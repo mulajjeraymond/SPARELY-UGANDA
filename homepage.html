@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sparely Uganda</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBh3oX1XeD-e-OXIMpzAGlLyax0QyCjtas",
+    authDomain: "sparely-uganda.firebaseapp.com",
+    projectId: "sparely-uganda",
+    storageBucket: "sparely-uganda.firebasestorage.app",
+    messagingSenderId: "689935852436",
+    appId: "1:689935852436:web:3379e36296b28d08d52581"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
+  <style>
+    body {
+      background-color: #e6520e;
+    }
+    .navbar, .footer {
+      background-color: #fc0303;
+    }
+    .nav-link, .navbar-brand, .footer p {
+      color: white;
+    }
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+    .card {
+      border-color: #b30000;
+    }
+    .btn-red {
+      background-color: #b30000;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="text-center py-3">
+     <nav class="navbar navbar-expand-lg navbar-dark px-4">
+     <a class="navbar-brand" href="homepage.html">Sparely Uganda</a>
+    <a href="https://wa.me/256744357702?text=Hello%20Sparely%20Uganda%2C%20I%20need%20spare%20parts"
+       class="btn btn-success" target="_blank">
+      <i class="bi bi-whatsapp"></i> Chat with us on WhatsApp
+    </a>
+   <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="homepage.html#spareparts">Spare Parts</a></li>
+        <li class="nav-item"><a class="nav-link" href="homepage.html#about">About</a></li>
+         <li class="nav-item"><a class="nav-link" href="admin.html">ADS</a></li>
+        <li class="nav-item"><a class="nav-link" href="vehicle-tips.html">Vehicle-Tips</a></li>
+      </ul>
+   </div>
+  </div>
+</nav>
+<br>
+<br>
+<br>
+<h3>Sparely Uganda is the best Ugandan spare access Quicky Website <br>that is accessed by number of fleet organisations in uganda </h3>
+
+  <!-- Spare Parts Section -->
+  <div class="container py-5" id="spareparts">
+    <h2 class="mb-4">Browse Spare Parts</h2>
+    <div class="row" id="vehicleMakes"></div>
+  </div>
+
+  <!-- about Section -->
+  <div class="container py-5" id="about">
+    <h2>ABOUT SPARELY UGANDA</h2>
+    <br>
+    <br>
+    <P> At Sparely Uganda, we are redefining the way Ugandans access genuine automotive spare parts. Our platform is built with one simple goal: to connect vehicle owners, mechanics, and businesses with reliable, high-quality spare parts—fast, affordably, and hassle-free.
+
+Whether you're in the heart of Kampala or beyond, we make sure your vehicle keeps moving. We partner with trusted suppliers across the country to ensure that every part we offer is authentic and durable, matching both your vehicle’s needs and your budget.
+
+With free delivery within Kampala and minimal delivery fees for upcountry locations, we’re not just selling spare parts—we’re building a smarter, more connected automotive ecosystem across Uganda.
+
+Welcome to the future of spare parts shopping.
+Welcome to Sparely Uganda.</P>
+<br>
+<br>
+    <h3 class="mb-3">Contact Us</h3>
+    <p>Email: raymondbravery@gmail.com</p>
+    <p>Phone: 0744357702, 0772989655</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer text-center py-3">
+    <p>&copy; 2025 Sparely Uganda. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const makes = [
+      { name: "Toyota", url: "Toyota_page.html" },
+      { name: "Fuso", url: "fuso_page.html" },
+      { name: "Tata", url: "Tata_models.html" },
+      { name: "Benz", url: "benz_page.html" }
+    ];
+
+    const container = document.getElementById("vehicleMakes");
+    makes.forEach(make => {
+      container.innerHTML += `
+        <div class='col-md-4 mb-4'>
+          <div class='card h-100'>
+            <div class='card-body'>
+              <h5 class='card-title'>${make.name} Parts</h5>
+              <p class='card-text'>Explore spare parts for ${make.name} vehicles.</p>
+              <a href='${make.url}' class='btn btn-red'>View</a>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

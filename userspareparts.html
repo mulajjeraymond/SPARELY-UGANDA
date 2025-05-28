@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>userspareparts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  
+ <style>
+    body {
+      background-color: #e6520e;
+    }
+    .navbar, .footer {
+      background-color: #fc0303;
+    }
+    .nav-link, .navbar-brand, .footer p {
+      color: white;
+    }
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+    .vehicle-card {
+      background-color: #ffe6ea;
+      border-left: 5px solid #b30000;
+    }
+    .btn-view {
+      background-color: #b30000;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark px-4">
+    <a class="navbar-brand" href="homepage.html">Sparely Uganda</a>
+    <a href="https://wa.me/256744357702?text=Hello%20Sparely%20Uganda%2C%20I%20need%20spare%20parts"
+   class="btn btn-success" target="_blank">
+   <i class="bi bi-whatsapp"></i> Chat with us on WhatsApp
+</a>
+
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="homepage.html#spareparts">Spare Parts</a></li>
+        <li class="nav-item"><a class="nav-link" href="homepage.html#about">About</a></li>
+         <li class="nav-item"><a class="nav-link" href="admin.html">ADS</a></li>
+        <li class="nav-item"><a class="nav-link" href="vehicle-tips.html">Vehicle-Tips</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <div class="container py-5">
+    <h2 class="mb-4 text-center">Available Spare Parts</h2>
+    <div id="partsDisplay" class="row"></div>
+  </div>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBh3oX1XeD-e-OXIMpzAGlLyax0QyCjtas",
+    authDomain: "sparely-uganda.firebaseapp.com",
+    projectId: "sparely-uganda",
+    storageBucket: "sparely-uganda.appspot.com",
+    messagingSenderId: "689935852436",
+    appId: "1:689935852436:web:3379e36296b28d08d52581"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const container = document.getElementById("partsDisplay");
+
+  async function loadParts() {
+    const querySnapshot = await getDocs(collection(db, "spareParts"));
+
+    if (querySnapshot.empty) {
+      container.innerHTML = `<p class="text-center text-muted">No spare parts found.</p>`;
+    } else {
+      querySnapshot.forEach(doc => {
+        const part = doc.data();
+        container.innerHTML += `
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+              <img src="${part.image}" class="card-img-top" alt="${part.name}">
+              <div class="card-body">
+                <h5 class="card-title">${part.name}</h5>
+                <p class="card-text">Vehicle: ${part.type}</p>
+                <p class="card-text"><strong>UGX ${part.price}</strong></p>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+  }
+
+  loadParts();
+</script>
+
+ 
+ <footer class="footer text-center py-3">
+    <p>&copy; 2025 Sparely Uganda. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
